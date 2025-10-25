@@ -1,0 +1,1 @@
+/*Logica para hacer peticion a la api */
