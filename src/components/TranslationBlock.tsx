@@ -1,7 +1,8 @@
 import Button from "./ui/Button";
 import { useForm } from "react-hook-form";
-import { useText } from "../context/TextContext";
 import { useEffect, useState } from "react";
+import { serviceAPI } from "../service/Ai";
+import { useText } from "../context/TextContext";
 
 interface TranslationBlockProps {
   title: string;
@@ -13,8 +14,7 @@ interface TranslationBlockProps {
 interface FormData {
   textToTranstale: string;
 }
-
-export default function TranslatioBlock({
+export default function TranslationBlock({
   title,
   placeholder,
   text,
@@ -27,7 +27,7 @@ export default function TranslatioBlock({
   } = useForm<FormData>();
 
   const [rawText, setRawText] = useState<string>('');
-  const {setText} = useText();   
+  const {setText} = useText();
 
   const onSubmit = (data: FormData) => {
     const textContent = data.textToTranstale.trim();
@@ -35,48 +35,63 @@ export default function TranslatioBlock({
       console.log("El campo no puede estar vacio");
       return;
     }
-
     setRawText(textContent);
   };
 
 
   useEffect(() => {
+    const proccessText = async () => {
+      if (!rawText) return;
 
-    const proccessText = () => {
+      console.log(`Texto identificado: ${rawText}`);
 
-      if (rawText !== '') {
-        console.log( `Texto indentificado: ${rawText}`); 
-
-        setText(rawText);
+      try {
+        const resultApi = await serviceAPI(rawText);
+        setText(resultApi ?? "");
+      } catch (error) {
+        console.error("Error al llamar a serviceAPI:", error);
+        setText("");
+      } finally {
+        // limpiar para evitar re-procesos innecesarios
+        setRawText("");
       }
-
-    }
+    };
 
     proccessText();
-
-  }, [rawText])
+  }, [rawText, setText]);
   
 
   return (
     <div className="h-86 rounded-sm md:h-[40vh]">
       <header>
-        <div className="">{title}</div>
+        <div>{title}</div>
       </header>
       <main className="h-full">
-        <form  className="h-10/12 rounded-sm shadow-md border border-gray-300" onSubmit={handleSubmit(onSubmit)}>
-          <textarea
-            {...register("textToTranstale", {
-              required: "Este campo es obligatorio",
-              maxLength: {
-                value: 200,
-                message: "El texto no puede exceder los 200 caracteres",
-              },
-            })}
-            className="w-full h-full text-lg lg:text-xl xl:text-2xl p-4  border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-teal-700"
-            placeholder={placeholder}
-            value={text ?? undefined }
-            disabled={disabled}
-          ></textarea>
+        <form
+          className="h-10/12 rounded-sm shadow-md border border-gray-300"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          {disabled ? (
+            <textarea
+              className="w-full h-full text-lg lg:text-xl xl:text-2xl p-4  border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-teal-700"
+              placeholder={placeholder}
+              value={text ?? ""}
+              disabled
+              readOnly
+            />
+          ) : (
+            <textarea
+              {...register("textToTranstale", {
+                required: "Este campo es obligatorio",
+                maxLength: {
+                  value: 200,
+                  message: "El texto no puede exceder los 200 caracteres",
+                },
+              })}
+              className="w-full h-full text-lg lg:text-xl xl:text-2xl p-4  border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-teal-700"
+              placeholder={placeholder}
+            />
+          )}
 
           {!disabled && (
             <Button

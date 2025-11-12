@@ -6,6 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import {TextProvider} from './context/TextContext'
 
 export default function App() {
+
+  //const api = import.meta.env.VITE_GOOGLE_API_KEY_DO;
+  //const api2 = import.meta.env.VITE_GOOGLE_API_KEY_DO2;
+
+  //console.log(api, api2);
+  
   return (
     <>
       <BrowserRouter>

@@ -1,5 +1,4 @@
 import {createContext, useContext, useState} from 'react'
-
 interface TextContextValue{
     text: string;
     setText: (value: string) => void;
