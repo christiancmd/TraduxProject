@@ -1,9 +1,12 @@
 import Button from "./ui/Button";
 import { useForm } from "react-hook-form";
+import { useText } from "../context/TextContext";
+import { useEffect, useState } from "react";
 
 interface TranslationBlockProps {
   title: string;
   placeholder: string;
+  text?: string;
   disabled: boolean;
 }
 
@@ -14,6 +17,7 @@ interface FormData {
 export default function TranslatioBlock({
   title,
   placeholder,
+  text,
   disabled,
 }: TranslationBlockProps) {
   const {
@@ -22,23 +26,44 @@ export default function TranslatioBlock({
     formState: { errors },
   } = useForm<FormData>();
 
+  const [rawText, setRawText] = useState<string>('');
+  const {setText} = useText();   
+
   const onSubmit = (data: FormData) => {
-    const text = data.textToTranstale.trim();
-    if (text.length === 0) {
+    const textContent = data.textToTranstale.trim();
+    if (textContent.length === 0) {
       console.log("El campo no puede estar vacio");
       return;
     }
 
-    console.log("Mensaje valido", text);
+    setRawText(textContent);
   };
+
+
+  useEffect(() => {
+
+    const proccessText = () => {
+
+      if (rawText !== '') {
+        console.log( `Texto indentificado: ${rawText}`); 
+
+        setText(rawText);
+      }
+
+    }
+
+    proccessText();
+
+  }, [rawText])
+  
 
   return (
     <div className="h-86 rounded-sm md:h-[40vh]">
       <header>
         <div className="">{title}</div>
       </header>
-      <main className="h-full bg-white rounded-sm shadow-md">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <main className="h-full">
+        <form  className="h-10/12 rounded-sm shadow-md border border-gray-300" onSubmit={handleSubmit(onSubmit)}>
           <textarea
             {...register("textToTranstale", {
               required: "Este campo es obligatorio",
@@ -47,8 +72,9 @@ export default function TranslatioBlock({
                 message: "El texto no puede exceder los 200 caracteres",
               },
             })}
-            className="w-full h-full text-lg p-4 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-teal-700"
+            className="w-full h-full text-lg lg:text-xl xl:text-2xl p-4  border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-teal-700"
             placeholder={placeholder}
+            value={text ?? undefined }
             disabled={disabled}
           ></textarea>
 

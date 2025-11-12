@@ -3,12 +3,14 @@ import Footer from "./components/Footer";
 import AboutPage from "./pages/AboutPage";
 import TranslationPage from "./pages/TranslationPage";
 import { BrowserRouter, Routes, Route } from "react-router";
+import {TextProvider} from './context/TextContext'
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="bg-gray-200 min-h-screen flex flex-col">
+        <TextProvider>
+          <div className="bg-gray-200 min-h-screen flex flex-col">
           <Header />
           <Routes>
             <Route path="/" element={<TranslationPage />} />
@@ -16,6 +18,7 @@ export default function App() {
           </Routes>
           <Footer />
         </div>
+        </TextProvider>
       </BrowserRouter>
     </>
   );

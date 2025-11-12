@@ -1,7 +1,11 @@
 import TranslationBlock from "../components/TranslationBlock";
 import IconTools from "../components/IconTools";
+import { useText } from "../context/TextContext";
 
 export default function TranslationPage() {
+
+  const {text} = useText();
+
   return (
     <section className="min-h-screen bg-gray-50 px-6 py-8">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
@@ -23,6 +27,7 @@ export default function TranslationPage() {
           <TranslationBlock
             title="Salida"
             placeholder="Resultado de la traducción..."
+            text = {text}
             disabled={true}
           />
         </div>
