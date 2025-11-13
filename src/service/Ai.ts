@@ -3,7 +3,6 @@ import { GoogleGenAI } from "@google/genai";
 const apiKey1 = import.meta.env.VITE_GOOGLE_API_KEY1;
 const apiKey2 = import.meta.env.VITE_GOOGLE_API_KEY2;
 
-
 if (!apiKey1 || !apiKey2) {
   throw new Error("Una o ambas API keys estan ausentes");
 }
@@ -12,9 +11,7 @@ let apiUsage = true; // Estado de alternancia
 
 function getApi(): GoogleGenAI {
   const apiKey = apiUsage ? apiKey1 : apiKey2;
-  apiUsage = !apiUsage; // ✅ alterna para la próxima vez
-
-  console.log(apiKey);
+  apiUsage = !apiUsage; // alterna para la próxima vez
   
   return new GoogleGenAI({apiKey})
 }
@@ -23,7 +20,7 @@ export async function main(rawText:string) {
 
     const ai = getApi();
 
-    const prompt = `Traduce esta palabra: ${rawText} de spanish al ingles, solo quiero la traduccion, sin recomendaciones ni ejemplos`;
+    const prompt = `Traduce:${rawText} de spanish al ingles, solo traduccion, sin recomendaciones ni ejemplos`;
 
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-lite",

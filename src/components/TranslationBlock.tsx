@@ -64,11 +64,11 @@ export default function TranslationBlock({
   return (
     <div className="h-86 rounded-sm md:h-[40vh]">
       <header>
-        <div>{title}</div>
+        <div><h3 className="text-gray-700 font-semibold">{title}</h3></div>
       </header>
       <main className="h-full">
         <form
-          className="h-10/12 rounded-sm shadow-md border border-gray-300"
+          className="h-10/12 text-gray-800 rounded-sm shadow-md bg-gray-50 border border-gray-300"
           onSubmit={handleSubmit(onSubmit)}
         >
           {disabled ? (

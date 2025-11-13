@@ -1,5 +1,6 @@
 import TranslationBlock from "../components/TranslationBlock";
 import IconTools from "../components/IconTools";
+import Title from "../components/Title";
 import { useText } from "../context/TextContext";
 
 export default function TranslationPage() {
@@ -7,15 +8,10 @@ export default function TranslationPage() {
   const {text} = useText();
 
   return (
-    <section className="min-h-screen bg-gray-50 px-6 py-8">
+    <section className="min-h-screen lg:min-h-[85vh] bg-gray-100 px-6 pt-8">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <header className="text-center">
-          <h1 className="text-3xl font-semibold text-gray-800">
-            Traductor Español-Inglés
-          </h1>
-          <p className="text-gray-500 mt-2">
-            Escribe tu texto y obtén la traducción con solo un click.
-          </p>
+          <Title title='Traductor Español-Inglés' description='Escribe tu texto y obtén la traducción con solo un click.'/>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -32,7 +28,7 @@ export default function TranslationPage() {
           />
         </div>
 
-        <footer className="flex justify-center">
+        <footer className="flex justify-center mt-12">
           <IconTools />
         </footer>
       </div>
