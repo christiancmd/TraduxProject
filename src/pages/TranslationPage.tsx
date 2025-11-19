@@ -1,10 +1,11 @@
+//Libraries
+import { useState } from "react";
+import { useText } from "../context/TextContext";
+//Components and Pages
 import TranslationBlock from "../components/TranslationBlock";
 import IconTools from "../components/IconTools";
 import Title from "../components/Title";
-import { useText } from "../context/TextContext";
-import { useState } from "react";
 import TopBlock from "../components/TopBlock";
-import { useEffect } from "react";
 
 export default function TranslationPage() {
 
@@ -18,14 +19,6 @@ export default function TranslationPage() {
       setSourceLang(lang === "en" ? "es" : "en");
     }
   };
-
-  useEffect(() => {
-    const onlineWeb = navigator.onLine;
-    console.log('navegador conectado a internet: ', onlineWeb);
-    
-  }, [])
-  
-
   return (
     <section className="min-h-screen  lg:min-h-[85vh] bg-gray-100 px-6 pt-8">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
@@ -34,8 +27,6 @@ export default function TranslationPage() {
             title="Traductor Español-Inglés"
             description="Escribe tu texto y obtén la traducción con solo un click."
           />
-
-
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

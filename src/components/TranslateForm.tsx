@@ -1,7 +1,10 @@
+//Libraries
 import { useForm } from "react-hook-form";
+//Contexts and Providers
+import useNetworkAccess from "../hooks/useNetworkAccess";
+//Components and Pages
 import Button from "./ui/Button";
 import Form from "./ui/Form";
-import useNetworkAccess from "../hooks/useNetworkAccess";
 
 interface FormProps {
   placeholder: string;

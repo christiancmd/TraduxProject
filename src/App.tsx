@@ -1,13 +1,17 @@
+//Libraries
+import { BrowserRouter, Routes, Route } from "react-router";
+import { Toaster } from "react-hot-toast";
+//Contexts and Providers
+import { TextProvider } from "./context/TextContext";
+//Components and Pages
+import TranslationPage from "./pages/TranslationPage";
+import AboutPage from "./pages/AboutPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AboutPage from "./pages/AboutPage";
-import TranslationPage from "./pages/TranslationPage";
-import { BrowserRouter, Routes, Route } from "react-router";
-import { TextProvider } from "./context/TextContext";
-import { Toaster } from "react-hot-toast";
+
+
 
 export default function App() {
-
   return (
     <>
       <BrowserRouter>

@@ -1,9 +1,13 @@
+//Libraries
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+//Contexts and Providers
 import { serviceAPI } from "../service/Ai";
 import { useText } from "../context/TextContext";
-import TranslateForm from "./TranslateForm";
 import useNetworkAccess from "../hooks/useNetworkAccess";
-import toast from "react-hot-toast";
+//Components and Pages
+import TranslateForm from "./TranslateForm";
+
 
 interface TranslationBlockProps {
   placeholder: string;

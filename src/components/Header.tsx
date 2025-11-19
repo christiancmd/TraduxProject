@@ -1,7 +1,9 @@
+//Contexts and Providers
+import useNetworkAccess from "../hooks/useNetworkAccess";
+//Style and icons
 import { Link } from "react-router";
 import { FaWifi } from "react-icons/fa";
 import { LuWifiOff } from "react-icons/lu";
-import useNetworkAccess from "../hooks/useNetworkAccess";
 
 export default function Header() {
   const networkAccess = useNetworkAccess();

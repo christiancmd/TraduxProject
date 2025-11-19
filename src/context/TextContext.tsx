@@ -1,4 +1,5 @@
-import {createContext, useContext, useState, useEffect} from 'react'
+//Libraries
+import {createContext, useContext, useState} from 'react'
 interface TextContextValue{
     text: string;
     setText: (value: string) => void;
@@ -11,11 +12,7 @@ const TextContext = createContext<TextContextValue | undefined>(undefined);
 export const TextProvider = ({children}: {children: React.ReactNode}) => {
     const [text, setText] = useState<string>(''); 
     const [params, setParams] = useState<string>('es'); //es por defecto  
-    useEffect(() => {
-      console.log(params);
-      
-    }, [params])
-    
+
     return(
         <TextContext.Provider value={{text, setText, params, setParams}} >
             {children}

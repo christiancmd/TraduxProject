@@ -1,5 +1,7 @@
-import Button from "./ui/Button";
+//Contexts and Providers
 import { useText } from "../context/TextContext";
+//Components and Pages
+import Button from "./ui/Button";
 
 interface TopBlockProps {
   title: string;
