@@ -1,6 +1,11 @@
 import { Link } from "react-router";
+import { FaWifi } from "react-icons/fa";
+import { LuWifiOff } from "react-icons/lu";
+import useNetworkAccess from "../hooks/useNetworkAccess";
 
 export default function Header() {
+  const networkAccess = useNetworkAccess();
+
   return (
     <header className="w-full px-4 py-8 bg-white shadow-md">
       <div className="flex justify-around items-center ">
@@ -9,13 +14,23 @@ export default function Header() {
           <h1 className="text-gray-800 font-black ">
             <Link to='/'>
               TRADUX
-          </Link>
+            </Link>
           </h1>
         </div>
-        <nav>
+        <nav className="flex items-center gap-3">
             <Link to='/about' className="ont-black rounded-lg border-2 py-2.5 px-6 text-white bg-teal-700 transition duration-300 hover:bg-teal-100 hover:border-teal-900 hover:text-teal-900">
               Sobre mi
             </Link>
+
+            {!networkAccess ? (
+              <div>
+                <LuWifiOff className="text-red-600 size-8" />
+              </div>
+            ):(
+              <div>
+                <FaWifi className="text-green-600 size-8" />
+              </div>
+            )}
         </nav>
       </div>
     </header>
