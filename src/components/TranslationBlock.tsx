@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { serviceAPI } from "../service/Ai";
 import { useText } from "../context/TextContext";
 import TranslateForm from "./TranslateForm";
+import useNetworkAccess from "../hooks/useNetworkAccess";
+import toast from "react-hot-toast";
 
 interface TranslationBlockProps {
   placeholder: string;
@@ -17,10 +19,16 @@ export default function TranslationBlock({
 
   const [rawText, setRawText] = useState<string>('');
   const {setText, params} = useText();
+  const networkAccess = useNetworkAccess();
 
   useEffect(() => {
     const proccessText = async () => {
       if (!rawText) return;
+
+      if (!networkAccess) {
+        toast.error("No hay acceso a la red. Por favor, verifica tu conexión a internet.");
+        return;
+      }
 
       console.log(`Texto identificado: ${rawText}`);
 

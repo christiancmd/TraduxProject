@@ -4,8 +4,10 @@ import AboutPage from "./pages/AboutPage";
 import TranslationPage from "./pages/TranslationPage";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { TextProvider } from "./context/TextContext";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -18,6 +20,7 @@ export default function App() {
             </Routes>
             <Footer />
           </div>
+          <Toaster position="top-center" reverseOrder={false} />
         </TextProvider>
       </BrowserRouter>
     </>
