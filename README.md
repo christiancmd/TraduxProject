@@ -60,11 +60,12 @@ npm run dev
 
 ## 🔐 Ejemplo de `.env`
 
-En la raíz del proyecto crea un archivo `.env` o `.env.local` con tu clave privada (no subir a repositorios públicos):
+En la raíz del proyecto crea un archivo `.env` o `.env.local` con tu clave privada (no subir a repositorios públicos), actualmente el sistema usa 2 APIKEY:
 
 ```env
 # Ejemplo: VITE_API_KEY=sk-xxxxx
-VITE_API_KEY=tu_api_key_aqui
+VITE_API_KEY_1=tu_api_key_aqui
+VITE_API_KEY_2=tu_api_key_aqui
 ```
 
 Nota: Tradux no incluye ninguna API key por defecto. Debes obtener la tuya desde el proveedor de IA que prefieras (por ejemplo OpenAI, Google Cloud, etc.) y colocarla en el `.env`.
@@ -110,9 +111,3 @@ Si no tienes scripts para `lint` o `build` en `package.json`, añade los que nec
 
 ---
 
-Si quieres, puedo:
-
-- añadir un `README` con ejemplo visual (capturas de pantalla),
-- crear un archivo `.env.example`,
-- añadir Badges adicionales (build, coverage, deploy),
-- o generar un pequeño `CONTRIBUTING.md`.
