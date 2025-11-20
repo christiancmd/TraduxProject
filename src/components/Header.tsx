@@ -21,7 +21,7 @@ export default function Header() {
         </div>
         <nav className="flex items-center gap-3">
             <Link to='/about' className="ont-black rounded-lg border-2 py-2.5 px-6 text-white bg-teal-700 transition duration-300 hover:bg-teal-100 hover:border-teal-900 hover:text-teal-900">
-              Sobre mi
+              Sobre Tradux
             </Link>
 
             {!networkAccess ? (

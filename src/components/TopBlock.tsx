@@ -30,7 +30,7 @@ export default function TopForm({
   };
 
   return (
-    <header>
+    <header className="mb-1">
       <div className={`flex items-center justify-between ${orderLeft == true ? "flex-row-reverse" : "flex-row"}`}>
         <h3 className={`text-gray-700 font-semibold p-1`}>{title}</h3>
         <div className={`gap-10 px-5 flex ${reverse == true ? "flex-row-reverse " : "flex-row"}`}>
@@ -38,7 +38,7 @@ export default function TopForm({
           <Button
             id={`es-${title.replace(/\s+/g, "-").toLowerCase()}`}
             onClick={handleClick("es")}
-            className={`px-5 ${activeLang === "es" ? "text-teal-900 border-b-2 border-t-2" : ""}`}
+            className={`px-5 transition duration-300 ${activeLang === "es" ? "text-teal-900 border-b-2 pb-1" : ""}`}
           >
             Español
           </Button>
@@ -46,7 +46,7 @@ export default function TopForm({
           <Button
             id={`en-${title.replace(/\s+/g, "-").toLowerCase()}`}
             onClick={handleClick("en")}
-            className={`px-5 ${activeLang === "en" ? "text-teal-900 border-b-2 border-t-2": ""}`}
+            className={`px-5 transition duration-300 ${activeLang === "en" ? "text-teal-900 border-b-2 pb-1": ""}`}
           >
             Inglés
           </Button>
