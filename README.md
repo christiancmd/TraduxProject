@@ -1,69 +1,118 @@
-    # Tradux
+# 🚀 Tradux
 
-    Tradux es una aplicación web de traducción breve diseñada para conversiones rápidas de texto usando un servicio de IA en la nube. Está pensada para frases y párrafos cortos y ofrece una interfaz sencilla para comprobar significados y traducciones.
+![status](https://img.shields.io/badge/status-alpha-yellow) ![license](https://img.shields.io/badge/license-MIT-blue)
 
-    ## Cómo funciona
+Tradux es una aplicación web ligera para traducciones rápidas usando un servicio de IA en la nube. Está diseñada para comprobar significados y generar traducciones de frases o párrafos cortos de forma ágil y práctica.
 
-    - Traducciones generadas por un servicio de IA en la nube.
-    - Pensado para usos rápidos (frases, párrafos cortos).
-    - Interfaz ligera construida con React y Vite.
+## 📌 Tabla de contenidos
 
-    ### Criterios y limitaciones de uso
+- [Cómo funciona](#cómo-funciona)
+- [Criterios y limitaciones de uso](#criterios-y-limitaciones-de-uso)
+- [Instalación](#instalación-clonar-y-ejecutar)
+- [Ejemplo de .env](#ejemplo-de-env)
+- [Comandos útiles](#comandos-útiles)
+- [Tecnologías usadas](#tecnologías-usadas)
+- [Contribuir](#contribuir)
+- [Seguridad y privacidad](#seguridad-y-privacidad)
 
-    - **Requisito de conexión:** Tradux necesita conexión a Internet para funcionar; sin conexión no se pueden realizar traducciones.
-    - **Límite diario:** Existe un límite de **6** traducciones por día para el uso general del servicio.
-    - **Nota sobre calidad:** Las traducciones son generadas por IA; suelen ser útiles, pero siempre conviene revisarlas antes de usarlas en contextos críticos.
+---
 
-    ## Instalación (clonar y ejecutar)
+## 💡 Cómo funciona
 
-    Para desarrollar o ejecutar Tradux localmente sigue estos pasos:
+- La app envía el texto al servicio de IA seleccionado y muestra la traducción recibida.
+- Pensada para usos rápidos: frases, párrafos cortos y comprobaciones puntuales.
+- La UI es responsiva y minimalista para ayudar a flujos rápidos de trabajo.
 
-    1. Clona el repositorio:
+## ⚖️ Criterios y limitaciones de uso
 
-    ```bash
-    git clone https://github.com/christiancmd/TraduxProject.git
-    cd TraduxProject
-    ```
+- **Requisito de conexión:** Tradux necesita conexión a Internet para funcionar; sin conexión no se pueden realizar traducciones.
+- **Límite diario:** Hay un límite de **6** traducciones por día para el uso general del servicio.
+- **Nota sobre calidad:** Las traducciones las genera un servicio de IA — suelen ser útiles, pero conviene revisarlas antes de usarlas en contextos críticos.
 
-    2. Instala dependencias:
+> Tip: Si necesitas traducir mucho contenido, agrupa los textos y prioriza los más importantes para optimizar el uso del límite diario.
 
-    ```bash
-    npm install
-    ```
+## 📥 Instalación (clonar y ejecutar)
 
-    3. Obtén tu propia API key de un proveedor de servicios de IA (por ejemplo GoogleGenAI u otro similar). Tradux no incluye una API key por defecto; debes usar la tuya.
+Sigue estos pasos para ejecutar Tradux localmente:
 
-    4. Crea un archivo de entorno con tu clave. Por ejemplo, en la raíz del proyecto crea un archivo `.env` o `.env.local` con:
+1. Clona el repositorio:
 
-    ```env
-    VITE_API_KEY=tu_api_key_aqui
-    ```
+```bash
+git clone https://github.com/christiancmd/TraduxProject.git
+cd TraduxProject
+```
 
-    5. Ejecuta la app en modo desarrollo:
+2. Instala dependencias:
 
-    ```bash
-    npm run dev
-    ```
+```bash
+npm install
+```
 
-    6. Abre `http://localhost:5173` (u otra URL que indique Vite) para ver la aplicación.
+3. Configura tu API key (ver sección siguiente).
 
-    ## Tecnologías usadas
+4. Ejecuta en modo desarrollo:
 
-    - React
-    - TypeScript
-    - Vite
-    - Tailwind CSS (estilos utilitarios)
-    - Node.js y npm
-    - ESLint (configuración base)
+```bash
+npm run dev
+```
 
-    ## Notas para contribuir
+5. Abre `http://localhost:5173` en tu navegador.
 
-    - Si vas a contribuir, revisa las reglas de lint y formatea con Prettier / ESLint antes de hacer commits.
-    - Si vas a probar traducciones masivas, recuerda el límite diario de 6 traducciones.
+## 🔐 Ejemplo de `.env`
 
-    ## Seguridad y privacidad
+En la raíz del proyecto crea un archivo `.env` o `.env.local` con tu clave privada (no subir a repositorios públicos):
 
-    - La aplicación envía texto al servicio de IA que provee las traducciones; revisa la política de privacidad del proveedor que uses.
+```env
+# Ejemplo: VITE_API_KEY=sk-xxxxx
+VITE_API_KEY=tu_api_key_aqui
+```
 
+Nota: Tradux no incluye ninguna API key por defecto. Debes obtener la tuya desde el proveedor de IA que prefieras (por ejemplo OpenAI, Google Cloud, etc.) y colocarla en el `.env`.
 
-    ***
+## 🛠️ Comandos útiles
+
+```bash
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
+npm run dev
+
+# Construir para producción
+npm run build
+
+# Formatear (Prettier) y corregir estilo (ESLint)
+npx prettier --write .
+npm run lint -- --fix
+```
+
+Si no tienes scripts para `lint` o `build` en `package.json`, añade los que necesites.
+
+## 🧰 Tecnologías usadas
+
+| Parte | Tecnologías |
+|---|---|
+| Frontend | React + TypeScript + Vite |
+| Estilos | Tailwind CSS |
+| Herramientas | Node.js, npm, ESLint, Prettier |
+| IA | Servicio externo (API key necesaria) |
+
+## 🤝 Contribuir
+
+- Haz un fork y crea una rama con tu feature: `git checkout -b feat/nombre`
+- Asegúrate de ejecutar linters y formateadores antes de abrir PR.
+- Añade descripciones claras y pasos para reproducir en la PR.
+
+## 🔒 Seguridad y privacidad
+
+- La aplicación envía texto al proveedor de IA seleccionado; revisa su política de privacidad.
+- No subas tus claves en repositorios públicos. Añade `.env` al `.gitignore`.
+
+---
+
+Si quieres, puedo:
+
+- añadir un `README` con ejemplo visual (capturas de pantalla),
+- crear un archivo `.env.example`,
+- añadir Badges adicionales (build, coverage, deploy),
+- o generar un pequeño `CONTRIBUTING.md`.
