@@ -5,7 +5,7 @@ import { GoStopwatch } from "react-icons/go";
 import { FaSignal } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa";
 
-
+//Info Page about the app
 export default function AboutPage() {
   return (
     <main className="flex justify-center p-4 sm:p-12 md:p-12 min-h-[80vh]">

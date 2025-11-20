@@ -17,10 +17,13 @@ function getApi(): GoogleGenAI {
 }
 
 export async function main(rawText: string, params: string) {
+  const TARGET_ES_TO_EN = "español a inglés";
+  const TARGET_EN_TO_ES = "inglés a español";
+
   const ai = getApi();
 
   const languageTarget =
-    params === "es" ? "espanish a ingles" : "ingles a spanish";
+    params === "es" ? TARGET_ES_TO_EN : TARGET_EN_TO_ES;
 
   const prompt = `Traduce el siguiente texto a ${languageTarget}: "${rawText}". La única salida debe ser la traducción, sin incluir explicaciones, comentarios o texto adicional.`;
   const response = await ai.models.generateContent({

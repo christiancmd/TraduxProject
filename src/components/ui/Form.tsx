@@ -7,8 +7,8 @@ interface FormProps{
     onSubmit: ()=> void;
 }
 
-function Form({children, onSubmit}:FormProps) {
-
+//Form component
+export default function Form({children, onSubmit}:FormProps) {
     const {handleSubmit} = useForm();
 
     return (
@@ -20,5 +20,3 @@ function Form({children, onSubmit}:FormProps) {
         </form>
     )
 }
-
-export default Form

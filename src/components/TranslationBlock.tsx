@@ -8,7 +8,6 @@ import useNetworkAccess from "../hooks/useNetworkAccess";
 //Components and Pages
 import TranslateForm from "./TranslateForm";
 
-
 interface TranslationBlockProps {
   placeholder: string;
   text?: string;
@@ -21,56 +20,69 @@ export default function TranslationBlock({
   disabled,
 }: TranslationBlockProps) {
 
+  //Local state to trigger text processing
   const [rawText, setRawText] = useState<string>('');
+  //Get setText and params from context
   const {setText, params} = useText();
+  //Get networkAccess status from custom hook
   const networkAccess = useNetworkAccess();
 
   useEffect(() => {
     const proccessText = async () => {
+
+      //Validation: If no rawText, return
       if (!rawText) return;
 
+      //Validation: If no networkAccess, show error and return
       if (!networkAccess) {
         toast.error("No hay acceso a la red. Por favor, verifica tu conexión a internet.");
         return;
       }
 
-      const today = new Date().toDateString(); // Fecha simplificada (ej: "Wed Nov 19 2025")
-      const lastDate = localStorage.getItem("lastRequestDate");
-      const storedCount = localStorage.getItem('requestCount');
-      let requestCount = (storedCount && !isNaN(Number(storedCount))) ? Number(storedCount) : 0;      
-      const requestLimit = 6; // Límite de solicitudes permitidas
+      const today = new Date().toDateString(); // date (ej: "Wed Nov 19 2025")
+      const lastDate = localStorage.getItem("lastRequestDate"); //get last request date
+      const storedCount = localStorage.getItem('requestCount'); //get stored request count
 
-      // Reset diario
+      //Validation: parse storedCount to number safely
+      let requestCount = (storedCount && !isNaN(Number(storedCount))) ? Number(storedCount) : 0;      
+      const requestLimit = 6; // Limit of requests per day
+
+      //Validation: Reset count if last request was on a different day
       if (lastDate !== today) {
         requestCount = 0;
         localStorage.setItem("requestCount", "0");
         localStorage.setItem("lastRequestDate", today);
       }
       
+      //Validation: Check if request limit is reached
       if (requestCount >= requestLimit) {
         toast.error("Has alcanzado el límite de solicitudes. Se reinicia mañana!.");
         return;
       }
 
       try {
+        //call serviceAPI with rawText and params
         const resultApi = await serviceAPI(rawText, params);
 
-        // Actualizar el contador de solicitudes
+        //update resquest count
         localStorage.setItem('requestCount', (Number(localStorage.getItem('requestCount') ?? '0') + 1).toString());
         localStorage.setItem("lastRequestDate", today);
         
-        setText(resultApi ?? "");
+        //Set the translated text in context
+        setText(resultApi);
       } catch (error) {
+        //error
         console.error("Error al llamar a serviceAPI:", error);
         setText("");
+
       } finally {
-        // limpiar para evitar re-procesos innecesarios
+        //Reset rawText
         setRawText("");
       }
     };
 
     proccessText();
-  }, [rawText, setText]);
+  }, [rawText, setText]); //dependency
   
 
   return (   

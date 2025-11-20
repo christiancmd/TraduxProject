@@ -5,7 +5,9 @@ import { Link } from "react-router";
 import { FaWifi } from "react-icons/fa";
 import { LuWifiOff } from "react-icons/lu";
 
+//Header Component
 export default function Header() {
+  //Get networkAccess from context
   const networkAccess = useNetworkAccess();
 
   return (

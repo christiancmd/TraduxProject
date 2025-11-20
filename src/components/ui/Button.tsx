@@ -6,6 +6,7 @@ interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
+//Button component
 export default function Button({
   children,
   className = "",

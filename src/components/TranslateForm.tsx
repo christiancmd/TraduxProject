@@ -17,21 +17,28 @@ interface FormData {
   textToTranslate: string;
 }
 
+//Translation Form Component
 export default function TranslateForm({ placeholder, text, disabled, setRawText }: FormProps ){
+  //Get networkAccess status from custom hook
   const networkAccess = useNetworkAccess();
-
+  //React Hook Form setup
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
+  //Handle form submission
   const onSubmit = (data: FormData) => {
     const textContent = data.textToTranslate.trim();
+
+    //validation: check if text is empty
     if (textContent.length === 0) {
       console.log("El campo no puede estar vacio");
       return;
     }
+
+    //send text to parent component
     setRawText(textContent);
   };
 

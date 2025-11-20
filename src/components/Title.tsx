@@ -3,8 +3,8 @@ interface TitleProps{
     description: string
 }
 
-
-function Title({title, description}:TitleProps) {
+//Title Component
+export default function Title({title, description}:TitleProps) {
   return (
     <div className="w-full">
         <h1 className="text-3xl font-semibold text-gray-800">
@@ -16,5 +16,3 @@ function Title({title, description}:TitleProps) {
     </div>
   )
 }
-
-export default Title

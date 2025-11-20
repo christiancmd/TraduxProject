@@ -7,12 +7,16 @@ interface TextContextValue{
     setParams: (value: string) => void;
 };
 
+//Context
 const TextContext = createContext<TextContextValue | undefined>(undefined);
 
+//Provider
 export const TextProvider = ({children}: {children: React.ReactNode}) => {
+    //create states
     const [text, setText] = useState<string>(''); 
     const [params, setParams] = useState<string>('es'); //es por defecto  
 
+    //Provider return
     return(
         <TextContext.Provider value={{text, setText, params, setParams}} >
             {children}
@@ -20,6 +24,7 @@ export const TextProvider = ({children}: {children: React.ReactNode}) => {
     )
 }
 
+//validate hook
 export const useText = () => {
   const controllerx = useContext(TextContext);
   if (!controllerx) {

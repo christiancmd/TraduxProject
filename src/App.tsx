@@ -9,6 +9,7 @@ import AboutPage from "./pages/AboutPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+//App Component
 export default function App() {
   return (
     <>

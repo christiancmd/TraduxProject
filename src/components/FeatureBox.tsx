@@ -7,6 +7,7 @@ interface FeatureBoxProps {
   className?: string;
 }
 
+//Reusable feature box component
 export default function FeatureBox({
   title,
   content,

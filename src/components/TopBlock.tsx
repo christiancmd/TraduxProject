@@ -7,10 +7,8 @@ interface TopBlockProps {
   title: string;
   reverse?: boolean;
   orderLeft?: boolean;
-  // idioma seleccionado para este bloque: 'en' o 'es'
-  activeLang: "en" | "es";
-  // notifica el idioma elegido por el usuario en este bloque
-  onLanguageChange: (lang: "en" | "es") => void;
+  activeLang: "en" | "es"; //enum to indicate the active language
+  onLanguageChange: (lang: "en" | "es") => void; // notify parent component of language change
 }
 
 export default function TopForm({
@@ -21,12 +19,13 @@ export default function TopForm({
   onLanguageChange,
 }: TopBlockProps) {
 
+  //get setParams from context
   const {setParams} = useText();
 
+  //function to handle click on language buttons
   const handleClick = (lang: "en" | "es") => () => {
-    
-    setParams(lang);
-    onLanguageChange(lang);
+    setParams(lang); //update setParams in context
+    onLanguageChange(lang); //notify parent component of language change
   };
 
   return (
@@ -37,7 +36,7 @@ export default function TopForm({
 
           <Button
             id={`es-${title.replace(/\s+/g, "-").toLowerCase()}`}
-            onClick={handleClick("es")}
+            onClick={handleClick("es")} //call handleClick with 'es'
             className={`px-5 transition duration-300 ${activeLang === "es" ? "text-teal-900 border-b-2 pb-1" : ""}`}
           >
             Español
@@ -45,7 +44,7 @@ export default function TopForm({
 
           <Button
             id={`en-${title.replace(/\s+/g, "-").toLowerCase()}`}
-            onClick={handleClick("en")}
+            onClick={handleClick("en")} //call handleClick with 'en'
             className={`px-5 transition duration-300 ${activeLang === "en" ? "text-teal-900 border-b-2 pb-1": ""}`}
           >
             Inglés

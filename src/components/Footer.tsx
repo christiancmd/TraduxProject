@@ -1,10 +1,11 @@
+  //Footer Component
 export default function Footer() {
   return (
     <footer className="w-full px-4 py-10 bg-white shadow-md">
       <div className="flex justify-between items-center xl:px-6">
-        <p>© 2024 Tradux. All rights reserved.</p>
-        <p className="inline-block">
-          Contact: <span>pariscachristian@gmail.com</span>
+        <p className="font-medium text-gray-800">© 2024 <span className="text-teal-900">Tradux</span>. All rights reserved.</p>
+        <p className="inline-block font-medium text-gray-800">
+          Contact: <span className="text-teal-900">pariscachristian@gmail.com</span>
         </p>
       </div>
     </footer>

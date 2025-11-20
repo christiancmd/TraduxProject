@@ -7,11 +7,13 @@ import IconTools from "../components/IconTools";
 import Title from "../components/Title";
 import TopBlock from "../components/TopBlock";
 
+//Translation Page
 export default function TranslationPage() {
-
   const [sourceLang, setSourceLang] = useState<"es" | "en">("es");
+  //Get text from context
   const { text } = useText();
 
+  //Handle language change for both sides. If left side changes, right side is set to the opposite language and vice versa.
   const handleLanguageChange = (side: "left" | "right", lang: "en" | "es") => {
     if (side === "left") {
       setSourceLang(lang);
