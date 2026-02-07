@@ -14,7 +14,7 @@ export default function Header() {
     <header className="w-full px-4 py-8 bg-white shadow-md">
       <div className="flex justify-around items-center ">
         <div className="flex items-center ">
-          <img className="w-14 h-10" src="/src/assets/tradux.png" alt="" />
+          <img className="w-14 h-10" src="/tradux.png" alt="" />
           <h1 className="text-gray-800 font-black ">
             <Link to='/'>
               TRADUX
