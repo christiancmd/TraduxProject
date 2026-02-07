@@ -31,7 +31,7 @@ export default function TranslationPage() {
           />
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-18 md:gap-6 ">
           <div className="h-86 rounded-sm md:h-[40vh]">
             <TopBlock
               title="Entrada"
